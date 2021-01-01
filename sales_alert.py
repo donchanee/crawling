@@ -16,13 +16,17 @@ def job():
     
     # 원하는 URL로 변경하기.
     url = "http://mixxo.elandmall.com/goods/initGoodsDetail.action?goods_no=2011314422"
+    # 원하는 가격으로 변경하기.
+    target_price = 49000
+    # 라인에서 발급받은 토큰으로 변경하기.
+    TOKEN = ### YOUR TOKEN ###
+    
     res = session.get(url, headers=headers).content
     soup = BeautifulSoup(res, 'html.parser')
     price = soup.find('meta', property = 'recopick:sale_price')
-    TOKEN = ### YOUR TOKEN ###
     TARGET_URL = 'https://notify-api.line.me/api/notify'
     
-    if int(price["content"].replace(',','')) < 49000:
+    if int(price["content"].replace(',','')) < target_price:
         response = requests.post(TARGET_URL,
                 headers={'Authorization': 'Bearer ' + TOKEN},
                 data={'message': '할인 시작!'}
