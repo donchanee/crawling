@@ -13,7 +13,8 @@ def job():
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit 537.36 (KHTML, like Gecko) Chrome",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
     }
-
+    
+    # 원하는 URL로 변경하기.
     url = "http://mixxo.elandmall.com/goods/initGoodsDetail.action?goods_no=2011314422"
     res = session.get(url, headers=headers).content
     soup = BeautifulSoup(res, 'html.parser')
